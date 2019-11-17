@@ -18,6 +18,14 @@ class myATMTest {
         bankATM.addBanknotesIntoATM(20, 10);
         bankATM.addBanknotesIntoATM(10, 10);
         bankATM.addBanknotesIntoATM(5, 10);
+
+//      Create instances of Caixa and BBVA Banks
+
+        BankDepartment caixaBank = new CaixaBankDepartment();
+        BankDepartment bbvaBank = new BBVABankDepartment();
+
+        bankATM.addObserver(caixaBank);
+        bankATM.addObserver(bbvaBank);
     }
 
     @AfterEach
@@ -34,6 +42,12 @@ class myATMTest {
         Assertions.assertEquals(350, bankATM.remainingBalance());
         bankATM.withdraw(50);
         Assertions.assertEquals(300, bankATM.remainingBalance());
+    }
+
+    @Test
+    public void observerTest() {
+        bankATM.withdraw(210);
+        System.out.println(bankATM.remainingBalance());
     }
 
 }
