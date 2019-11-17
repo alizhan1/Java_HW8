@@ -7,10 +7,12 @@ public class myATM implements ATM {
     @Override
     public boolean withdraw(Integer cash) {
         Container.Denomination currentDenomination = myATMContainer.getHead();
+        Integer currentCash = 0;
         if (cash % 5 == 0) {
-            while (currentDenomination != null && currentDenomination.getAmount() != 0) {
+            while (currentDenomination != null && currentDenomination.getAmount() != 0 && currentCash != cash) {
                 if (cash % currentDenomination.getBill() == 0 && currentDenomination.getAmount() != 0) {
                     currentDenomination.setAmount(currentDenomination.getAmount() - 1);
+                    currentCash += currentDenomination.getBill();
                     continue;
                 }
                 else {

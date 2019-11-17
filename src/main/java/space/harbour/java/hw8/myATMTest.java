@@ -11,9 +11,13 @@ class myATMTest {
     @BeforeEach
     public void setUp() {
         bankATM = new myATM();
-        bankATM.addBanknotesIntoATM(5, 10);
-        bankATM.addBanknotesIntoATM(10, 10);
+
+//      As sorting in the container is not implemented
+//      please add bills in descending order
+
         bankATM.addBanknotesIntoATM(20, 10);
+        bankATM.addBanknotesIntoATM(10, 10);
+        bankATM.addBanknotesIntoATM(5, 10);
     }
 
     @AfterEach
@@ -27,9 +31,9 @@ class myATMTest {
 
     @Test
     public void remainingBalanceTest() {
-        Assertions.assertEquals(bankATM.remainingBalance(), 350);
+        Assertions.assertEquals(350, bankATM.remainingBalance());
         bankATM.withdraw(50);
-        Assertions.assertEquals(bankATM.remainingBalance(), 300);
+        Assertions.assertEquals(300, bankATM.remainingBalance());
     }
 
 }
